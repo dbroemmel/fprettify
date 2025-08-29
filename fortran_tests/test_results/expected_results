@@ -1,4 +1,4 @@
-example.f90 : f5b449553856f8e62b253402ed2189044554f53c9954aad045db44ff3c2d49b7
+example.f90 : 0485d7caee6dd1e6e978720f42b1f48c5673fd8916d03b6ab86df81527fb475f
 RosettaCodeData/Task/100-doors/Fortran/100-doors-1.f : b44289edb55a75ca29407be3ca0d997119253d4c7adb5b3dfc1119944036ab0f
 RosettaCodeData/Task/100-doors/Fortran/100-doors-2.f : 263122b2af3e3637a7dab0bc0216dec27d76068b7352e9ab85e420de625408be
 RosettaCodeData/Task/24-game-Solve/Fortran/24-game-solve-1.f : 8927cfcfe15685f1513ed923b7ac38058358ec6586de83920679b537aa5b2d03
@@ -2177,7 +2177,7 @@ cp2k/src/xtb_coulomb.F : 0f3a97d48e2aa9883e052afaa9c0c834fcc1c00eeeab81df508e040
 cp2k/src/xtb_matrices.F : e9b617ac1ec85b8bfb04c4030e67ac6a18d16586ad7252d112e4aa7bf0a10936
 cp2k/src/xtb_parameters.F : 30320b3ecb2187e4a0f81bff8f27c5474e77b3ce7fe1c16a1de61c5eb69e7889
 cp2k/src/xtb_types.F : a34cc5d2cd61bfa2c6194e0413e7772391a59e92add52e50d01e199897662b13
-example_swapcase.f90 : 8dfac266553a438deb71e3faf5aeb97cd067a004c5cf61cda341237cd6328d55
+example_swapcase.f90 : 8dc5c7ac71eb725b1466e643db4c8ff57975c9ec2db36a638244ef8905c5863c
 where_forall.f90 : 11062d8d766cce036a0c2ed25ce3d8fe75fee47ab1e6566ec24c6b0043f6ffea
 cp2k/src/almo_scf_lbfgs_types.F : 4dea88ca22891e587a0b0dc84b2067f23f453cdcb9afebf953b5b0237c4391db
 cp2k/src/common/callgraph.F : 5a54e42c7a616eae001f8eb9dc1efe73d9eb92b353a763b1adfbec1e20c7179d

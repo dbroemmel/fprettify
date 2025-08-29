@@ -140,9 +140,9 @@ class FPrettifyTestCase(unittest.TestCase):
 
     def test_whitespace_keywords(self):
         """simple test for whitespace formatting of keywords like enddo"""
-        instring = "enddo\nend if\nendprogram\ngoto 100\ngo to 101"
-        outstring_yes = "end do\nend if\nend program\ngo to 100\ngo to 101"
-        outstring_no = "enddo\nendif\nendprogram\ngoto 100\ngoto 101"
+        instring = "enddo\nend if\nendprogram\ngoto 100\ngo to 101\nelseif (.true.) then"
+        outstring_yes = "end do\nend if\nend program\ngo to 100\ngo to 101\nelse if (.true.) then"
+        outstring_no = "enddo\nendif\nendprogram\ngoto 100\ngoto 101\nelseif(.true.) then"
 
         self.assert_fprettify_result(['--whitespace-intrinsics=true'], instring, outstring_yes)
         self.assert_fprettify_result(['--whitespace-intrinsics=false'], instring, outstring_no)
@@ -437,7 +437,7 @@ class FPrettifyTestCase(unittest.TestCase):
             "INTEGER, INTENT(IN) :: r, i, j, k",
             "IF (l.EQ.2) l=MAX  (l64, 2_int64)",
             "PURE SUBROUTINE mypure()",
-            "GOTO 100"
+            "GOTO 100",
             "GO TO 101"
             )
         outstring = (

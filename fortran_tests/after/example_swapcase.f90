@@ -250,7 +250,7 @@ PROGRAM example_prog
 ! unindented comment
                      ! indented comment
                   END DO; END DO
-            ELSEIF (.NOT. j == 4) THEN
+            ELSE IF (.NOT. j == 4) THEN
                my_integer = 4
             ELSE
                WRITE (*, *) " hello"

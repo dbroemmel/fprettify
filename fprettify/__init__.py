@@ -103,7 +103,7 @@ STATEMENT_LABEL_RE = re.compile(r"^\s*(\d+\s)(?!"+EOL_STR+")", RE_FLAGS)
 # regular expressions for parsing statements that start, continue or end a
 # subunit:
 IF_RE = re.compile(
-    SOL_STR + r"(\w+\s*:)?\s*IF\s*\(.*\)\s*THEN" + EOL_STR, RE_FLAGS)
+    SOL_STR + r"(\w+\s*:)?(?!\s*ELSE)\s*IF\s*\(.*\)\s*THEN" + EOL_STR, RE_FLAGS)
 ELSE_RE = re.compile(
     SOL_STR + r"ELSE(\s*IF\s*\(.*\)\s*THEN)?" + EOL_STR, RE_FLAGS)
 ENDIF_RE = re.compile(SOL_STR + r"END\s*IF(\s+\w+)?" + EOL_STR, RE_FLAGS)
@@ -1256,6 +1256,9 @@ def add_whitespace_charwise(line, spacey, scope_parser, format_decl, filename, l
     if GOTO_RE.search(line_ftd):
         # this is not a compiled regex since I hope to hit it rarely anyway
         line_ftd = re.sub(r"(GO)\s*(TO)", r"\1" + " "*spacey[8] + r"\2", line_ftd, flags=RE_FLAGS)
+
+    if ELSE_RE.search(line_ftd):
+        line_ftd = re.sub(r"(ELSE)\s*(IF)", r"\1" + " "*spacey[8] + r"\2", line_ftd, flags=RE_FLAGS)
 
     is_end = False
     if END_RE.search(line_ftd):

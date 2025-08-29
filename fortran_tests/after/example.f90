@@ -203,7 +203,7 @@ program example_prog
 ! unindented comment
                      ! indented comment
                   end do; end do
-            elseif (.not. j == 4) then
+            else if (.not. j == 4) then
                my_integer = 4
             else
                write (*, *) " hello"
