@@ -114,9 +114,9 @@ program example_prog
                m = 0
                do while (m < 4)
                   m = m + 1
-                  do k = 1, 3
+                  do 100 k = 1, 3
                      if (k == 1) l = l + 1
-                  end do
+                  100 continue
                end do
             end if
          end do do_label

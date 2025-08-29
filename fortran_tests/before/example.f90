@@ -115,9 +115,9 @@ real(kind=dp) :: r1,   r2,  r3, r4, r5,  r6
           m =0
       do while(m <4)
               m =m+1
-             do k=1,3
+             do 100 k=1,3
       if (k==1)  l =l +1
-    end do
+    100 continue
       enddo
      endif
     enddo do_label
