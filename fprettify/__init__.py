@@ -1554,15 +1554,16 @@ def reformat_ffile_combined(infile, outfile, impose_indent=True, indent_size=3, 
             lines, pre_ampersand, ampersand_sep = remove_pre_ampersands(
                 lines, is_special, orig_filename, stream.line_nr)
 
-            linebreak_pos = get_linebreak_pos(lines, filter_fypp=not indent_fypp)
-
             f_line = f_line.strip(' ')
 
             if impose_replacements:
                 f_line = replace_relational_single_fline(f_line, cstyle)
+                lines = [replace_relational_single_fline(l, cstyle) for l in lines]
 
             if impose_case:
                 f_line = replace_keywords_single_fline(f_line, case_dict)
+
+            linebreak_pos = get_linebreak_pos(lines, filter_fypp=not indent_fypp)
 
             if impose_whitespace:
                 lines = format_single_fline(
