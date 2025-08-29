@@ -138,6 +138,15 @@ class FPrettifyTestCase(unittest.TestCase):
             args = ['-w', str(w)]
             self.assert_fprettify_result(args, instring, out)
 
+    def test_whitespace_keywords(self):
+        """simple test for whitespace formatting of keywords like enddo"""
+        instring = "enddo\nend if\nendprogram\ngoto 100\ngo to 101"
+        outstring_yes = "end do\nend if\nend program\ngo to 100\ngo to 101"
+        outstring_no = "enddo\nendif\nendprogram\ngoto 100\ngoto 101"
+
+        self.assert_fprettify_result(['--whitespace-intrinsics=true'], instring, outstring_yes)
+        self.assert_fprettify_result(['--whitespace-intrinsics=false'], instring, outstring_no)
+
     def test_type_selector(self):
         """test for whitespace formatting option -w 4"""
         instring = "A%component=func(mytype%a,mytype%abc+mytype%abcd)"
@@ -427,7 +436,9 @@ class FPrettifyTestCase(unittest.TestCase):
             "USE ISO_FORTRAN_ENV, ONLY: int64",
             "INTEGER, INTENT(IN) :: r, i, j, k",
             "IF (l.EQ.2) l=MAX  (l64, 2_int64)",
-            "PURE SUBROUTINE mypure()"
+            "PURE SUBROUTINE mypure()",
+            "GOTO 100"
+            "GO TO 101"
             )
         outstring = (
             "module exAmple",
@@ -448,7 +459,9 @@ class FPrettifyTestCase(unittest.TestCase):
             "use iso_fortran_env, only: INT64",
             "integer, intent(IN) :: r, i, j, k",
             "if (l .eq. 2) l = max(l64, 2_INT64)",
-            "pure subroutine mypure()"
+            "pure subroutine mypure()",
+            "go to 100",
+            "go to 101"
             )
         for i in range(len(instring)):
             self.assert_fprettify_result(['--case', '1', '1', '1', '2'],

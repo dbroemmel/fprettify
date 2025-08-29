@@ -197,6 +197,7 @@ PRIVATE_RE = re.compile(SOL_STR + r"PRIVATE\s*::", RE_FLAGS)
 PUBLIC_RE = re.compile(SOL_STR + r"PUBLIC\s*::", RE_FLAGS)
 
 END_RE = re.compile(SOL_STR + r"(END)\s*(IF|DO|SELECT|ASSOCIATE|BLOCK|SUBROUTINE|FUNCTION|MODULE|SUBMODULE|TYPE|PROGRAM|INTERFACE|ENUM|WHERE|FORALL)", RE_FLAGS)
+GOTO_RE = re.compile(SOL_STR + r"(GO)\s*(TO)\s+\d+", RE_FLAGS)
 
 # intrinsic statements with parenthesis notation that are not functions
 INTR_STMTS_PAR = (r"(ALLOCATE|DEALLOCATE|"
@@ -346,14 +347,14 @@ F90_KEYWORDS_RE = re.compile(r"\b(" + "|".join((
     "contains", "continue", "cycle", "data", "deallocate",
     "dimension", "do", "double", "else", "elseif", "elsewhere", "end",
     "enddo", "endfile", "endif", "entry", "equivalence", "exit",
-    "external", "forall", "format", "function", "goto", "if",
+    "external", "forall", "format", "function", "goto", "go", "if",
     "implicit", "include", "inquire", "integer", "intent",
     "interface", "intrinsic", "logical", "module", "namelist", "none",
     "nullify", "only", "open", "operator", "optional", "parameter",
     "pause", "pointer", "precision", "print", "private", "procedure",
     "program", "public", "read", "real", "recursive", "result", "return",
     "rewind", "save", "select", "sequence", "stop", "subroutine",
-    "target", "then", "type", "use", "where", "while", "write",
+    "target", "then", "to", "type", "use", "where", "while", "write",
     ## F95 keywords.
     "elemental", "pure",
     ## F2003
@@ -1251,6 +1252,10 @@ def add_whitespace_charwise(line, spacey, scope_parser, format_decl, filename, l
                     ' ' * spacey[1] + assign_op +
                     ' ' * spacey[1] + rhs.lstrip(' '))
         # offset w.r.t. unformatted line
+
+    if GOTO_RE.search(line_ftd):
+        # this is not a compiled regex since I hope to hit it rarely anyway
+        line_ftd = re.sub(r"(GO)\s*(TO)", r"\1" + " "*spacey[8] + r"\2", line_ftd, flags=RE_FLAGS)
 
     is_end = False
     if END_RE.search(line_ftd):
