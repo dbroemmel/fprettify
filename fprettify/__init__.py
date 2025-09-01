@@ -98,7 +98,7 @@ EOL_STR = r"\s*;?\s*$"  # end of fortran line
 EOL_SC = r"\s*;\s*$"  # whether line is ended with semicolon
 SOL_STR = r"^\s*"  # start of fortran line
 
-STATEMENT_LABEL_RE = re.compile(r"^\s*(\d+\s)(?!\s*CONTINUE)(?!"+EOL_STR+")", RE_FLAGS)
+STATEMENT_LABEL_RE = re.compile(r"^\s*(\d+\s)(?!"+EOL_STR+")", RE_FLAGS)
 
 # regular expressions for parsing statements that start, continue or end a
 # subunit:
@@ -109,7 +109,7 @@ ELSE_RE = re.compile(
 ENDIF_RE = re.compile(SOL_STR + r"END\s*IF(\s+\w+)?" + EOL_STR, RE_FLAGS)
 
 DO_RE = re.compile(SOL_STR + r"(\w+\s*:)?\s*DO(" + EOL_STR + r"|\s+\w)", RE_FLAGS)
-ENDDO_RE = re.compile(SOL_STR + r"(END\s*DO(\s+\w+)?|\d+\s*CONTINUE)" + EOL_STR, RE_FLAGS)
+ENDDO_RE = re.compile(SOL_STR + r"(END\s*DO(\s+\w+)?|\s*CONTINUE\s*(\!.*)?)" + EOL_STR, RE_FLAGS)
 
 SELCASE_RE = re.compile(
     SOL_STR + r"SELECT\s*(CASE|RANK|TYPE)\s*\(.*\)" + EOL_STR, RE_FLAGS)

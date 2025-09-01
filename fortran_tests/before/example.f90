@@ -135,7 +135,8 @@ real(kind=dp) :: r1,   r2,  r3, r4, r5,  r6
          do i = 4, 5
           do my_integer = 1, 1
           do j = 1, 2
-          write (*, *) test_function(m, r, k, l) + i
+          write (*, 222) test_function(m, r, k, l) + i
+    222 format (i0)
             enddo
             enddo
          enddo

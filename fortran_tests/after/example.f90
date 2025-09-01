@@ -116,7 +116,7 @@ program example_prog
                   m = m + 1
                   do 100 k = 1, 3
                      if (k == 1) l = l + 1
-                  100 continue
+100               continue
                end do
             end if
          end do do_label
@@ -134,7 +134,8 @@ program example_prog
          do i = 4, 5
             do my_integer = 1, 1
             do j = 1, 2
-               write (*, *) test_function(m, r, k, l) + i
+               write (*, 222) test_function(m, r, k, l) + i
+222            format(i0)
             end do
             end do
          end do
