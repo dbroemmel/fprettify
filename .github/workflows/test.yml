@@ -60,7 +60,11 @@ jobs:
 
       - name: Run tests
         run: |
-          coverage run --source=fprettify -m unittest ./run_tests.py
+          if [ "$python" == "3.8" ] || [ "$python" == "3.9" ] || [ "$python" == "3.10" ] ; then
+             coverage run --source=fprettify setup.py test
+          else
+             coverage run --source=fprettify -m unittest ./run_tests.py
+          fi
 
       - name: Coverage upload
         run: coveralls --service=github
